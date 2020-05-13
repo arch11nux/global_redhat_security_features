@@ -2,7 +2,7 @@
 - name: obtain OS version
   shell: cat /etc/centos-release
   register: result_os_version
-- name: register variable for report / "O/S version before"
+- name: register variable for report / "O/S version before the upgrade TASK"
   debug: var=result_os_version.stdout
 
 - name: update the system

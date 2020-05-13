@@ -11,6 +11,6 @@
     - restart fapolicyd
   register: yum_fapolicyd_output
 - debug:
-    var: yum_fapolicyd_output.msg
+    var: yum_fapolicyd_output
 #----------------------------------
 ...

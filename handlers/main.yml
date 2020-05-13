@@ -1,5 +1,5 @@
 ---
-# handlers file for roles/report_global_redhat_security_features
+# handlers file for roles/global_redhat_security_features
 
 # handlers for fapolicyd.yml
 - name: enable fapolicyd
@@ -8,7 +8,7 @@
   service: name=fapolicyd state=restarted
 
 # handlers for session-recording.yml
-- name: enable cockpit_session_recording
-  service: name=cockpit_session_recording enabled=yes
-- name: restart cockpit_session_recording
-  service: name=cockpit_session_recording state=restarted
+- name: enable cockpit.socket
+  service: name=cockpit.socket enabled=yes
+- name: restart sssd
+  service: name=sssd state=restarted

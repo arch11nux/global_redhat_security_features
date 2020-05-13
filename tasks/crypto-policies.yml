@@ -4,4 +4,4 @@
   register: provided_crypto_policies
 
 - name: print provided crypto-policies
-  debug: msg=provided_crypto_policies.stdout
+  debug: var=provided_crypto_policies
