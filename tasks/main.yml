@@ -11,14 +11,14 @@
     - "change the value into the file: roles/global_redhat_security_features/defaults/main.yml"
     - "##########################################"
 #-------------------------------------------
-- name: obtain OS version
+- name: Display OS version
   shell: cat /etc/centos-release
   register: result_os_version
 - name: print OS version
   debug: var=result_os_version.stdout
  #-------------------------------------------
-- debug: msg="++++++++ Debut de la tache = OS update/upgrade ++++++++"
-- name: OS update/upgrade
+- debug: msg="++++++++++++++++++++++++ TASK - RedHat 8 update/upgrade ="++++++++++++++++++++++++
+- name: TASK - RedHat 8 update/upgrade
   import_tasks: redhatupdate.yml
   check_mode: "{{ var_check_mode }}"
   tags:
@@ -27,8 +27,8 @@
     - global_redhat_security_features
   ignore_errors: yes
  #-------------------------------------------
-- debug: msg="++++++++ Debut de la tache = fapolicyd | CONFIGURING APPLICATION WHITELISTS ++++++++"
-- name: fapolicyd | CONFIGURING APPLICATION WHITELISTS
+- debug: msg="++++++++++++++++++++++++ TASK - install / configure fapolicyd | CONFIGURING APPLICATION WHITELISTS ="++++++++++++++++++++++++
+- name: TASK - install / configure fapolicyd | CONFIGURING APPLICATION WHITELISTS
   import_tasks: fapolicyd.yml
   check_mode: "{{ var_check_mode }}"
   tags:
@@ -36,8 +36,8 @@
     - RedHat8
     - global_redhat_security_features
 #-------------------------------------------
-- debug: msg="++++++++ Debut de la tache = crypto-policies | SYSTEM-WIDE CRYPTOGRAPHIC POLICIES ++++++++"
-- name: crypto-policies | SYSTEM-WIDE CRYPTOGRAPHIC POLICIES
+- debug: msg="++++++++++++++++++++++++ TASK - install / configure crypto-policies | SYSTEM-WIDE CRYPTOGRAPHIC POLICIES ="++++++++++++++++++++++++
+- name: TASK - install / configure crypto-policies | SYSTEM-WIDE CRYPTOGRAPHIC POLICIES
   import_tasks: crypto-policies.yml
   check_mode: "{{ var_check_mode }}"
   tags:
@@ -45,8 +45,8 @@
     - RedHat8
     - global_redhat_security_features
 #-------------------------------------------
-- debug: msg="++++++++ Debut de la tache = session-recording | COCKPIT SESSION RECORDING ++++++++"
-- name: session-recording | COCKPIT SESSION RECORDING
+- debug: msg="++++++++++++++++++++++++ TASK - install / configure session-recording | COCKPIT SESSION RECORDING ="++++++++++++++++++++++++
+- name: TASK - install / configure session-recording | COCKPIT SESSION RECORDING
   import_tasks: session-recording.yml
   check_mode: "{{ var_check_mode }}"
   tags:
@@ -61,4 +61,11 @@
     owner: ransible
     group: ransible
     mode: 0640
+#-------------------------------------------
+- name: download report
+  fetch:
+    src: report_global_redhat_security_features.out
+    dest: ../report_global_redhat_security_features/{{ inventory_hostname }}.out
+    flat: yes
+#-------------------------------------------
 ...

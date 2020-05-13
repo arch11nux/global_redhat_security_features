@@ -1,9 +1,9 @@
 ---
 - name: obtain OS version
   shell: cat /etc/centos-release
-  register: result_os_version
+  register: result_os_version_before_update
 - name: register variable for report / "O/S version before the upgrade TASK"
-  debug: var=result_os_version.stdout
+  debug: var=result_os_version_before_update.stdout
 
 - name: update the system
   yum:
@@ -25,3 +25,9 @@
     sleep: 5
     delay: 5
     timeout: 60
+
+- name: obtain OS version
+  shell: cat /etc/centos-release
+  register: result_os_version_after_update
+- name: register variable for report / "O/S version after the upgrade TASK"
+  debug: var=result_os_version_after_update.stdout

@@ -1,5 +1,5 @@
 ***********************************************************************
-PATCH REPORT FOR {{ inventory_hostname }}
+Redhat Security Features Report for {{ inventory_hostname }}
 DATE:  {{ ansible_date_time.date }}
 TIME: {{ ansible_date_time.time }}
 -----------------------------------------------------------------------
@@ -14,24 +14,24 @@ Kernel rev:               {{ ansible_kernel }}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-Display the status of OS upgdate / upgrade
+TASK - RedHat 8 update/upgrade
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-O/S version before:       {{ result_os_version.stdout }}
-O/S version after:        {{ hostvars[inventory_hostname].ansible_distribution_version }}
+O/S version before:       {{ result_os_version_before_update.stdout }}
+O/S version after:        {{ result_os_version_after_update.stdout }}
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-Display the status of fapolicyd service | CONFIGURING APPLICATION WHITELISTS
+TASK - install / configure fapolicyd | CONFIGURING APPLICATION WHITELISTS
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 fapolicyd installation      {{ yum_fapolicyd_output.msg }}
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-DISPLAY provided crypto policies
+TASK - install / configure crypto-policies
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ### Display update-crypto-policies service STATUS  ###
 Provided crypto-policies    {{ provided_crypto_policies }}
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-Display the status of session-recording service
+TASK - install / configure session-recording
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 Session recording           {{ yum_cockpit_session_recording_output.msg }}
 
