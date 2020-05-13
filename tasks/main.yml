@@ -18,14 +18,14 @@
   debug: var=result_os_version.stdout
  #-------------------------------------------
 - debug: msg="++++++++++++++++++++++++ TASK - RedHat 8 update/upgrade ="++++++++++++++++++++++++
-- name: TASK - RedHat 8 update/upgrade
-  import_tasks: redhatupdate.yml
-  check_mode: "{{ var_check_mode }}"
-  tags:
-    - redhat_update
-    - RedHat8
-    - global_redhat_security_features
-  ignore_errors: yes
+#- name: TASK - RedHat 8 update/upgrade
+#  import_tasks: redhatupdate.yml
+#  check_mode: "{{ var_check_mode }}"
+#  tags:
+#    - redhat_update
+#    - RedHat8
+#    - global_redhat_security_features
+#  ignore_errors: yes
  #-------------------------------------------
 - debug: msg="++++++++++++++++++++++++ TASK - install / configure fapolicyd | CONFIGURING APPLICATION WHITELISTS ="++++++++++++++++++++++++
 - name: TASK - install / configure fapolicyd | CONFIGURING APPLICATION WHITELISTS
@@ -35,6 +35,12 @@
     - config_fapolicyd
     - RedHat8
     - global_redhat_security_features
+
+- name: get service facts
+  service_facts:
+- name: "@@@ Verify the service fapolicyd status @@@"
+  debug:
+    var: ansible_facts.services["fapolicyd.service"]
 #-------------------------------------------
 - debug: msg="++++++++++++++++++++++++ TASK - install / configure crypto-policies | SYSTEM-WIDE CRYPTOGRAPHIC POLICIES ="++++++++++++++++++++++++
 - name: TASK - install / configure crypto-policies | SYSTEM-WIDE CRYPTOGRAPHIC POLICIES

@@ -12,7 +12,9 @@
     - enable cockpit.socket
     - restart sssd
   register: yum_cockpit_session_recording_output
+
 - debug:
-    var: yum_cockpit_session_recording_output
+    msg: 
+      - "It's cockpit-session-recording package installed ? {{ yum_cockpit_session_recording_output.changed }}"
 #----------------------------------
 ...

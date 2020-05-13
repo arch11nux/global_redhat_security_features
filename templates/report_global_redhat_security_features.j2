@@ -22,18 +22,18 @@ O/S version after:        {{ result_os_version_after_update.stdout }}
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 TASK - install / configure fapolicyd | CONFIGURING APPLICATION WHITELISTS
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-fapolicyd installation      {{ yum_fapolicyd_output.msg }}
+fapolicyd installation:     {{ yum_fapolicyd_output.msg }}
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 TASK - install / configure crypto-policies
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ### Display update-crypto-policies service STATUS  ###
-Provided crypto-policies    {{ provided_crypto_policies }}
+Provided crypto-policies:   {{ provided_crypto_policies.stdout }}
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 TASK - install / configure session-recording
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-Session recording           {{ yum_cockpit_session_recording_output.msg }}
+Session recording:          {{ yum_cockpit_session_recording_output.msg }}
 
 
 
