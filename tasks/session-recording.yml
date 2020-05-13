@@ -1,0 +1,16 @@
+---
+# file for roles/tasks/session-recording.yml
+- name: Install the cockpit-session-recording package
+  yum:
+    name: "cockpit-session-recording"
+    state: present
+    update_cache: true
+  become: true
+  notify:
+    - enable cockpit_session_recording
+    - restart cockpit_session_recording
+  register: yum_cockpit_session_recording_output
+- debug:
+    var: yum_cockpit_session_recording_output.msg
+#----------------------------------
+...

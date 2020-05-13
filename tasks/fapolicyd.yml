@@ -1,0 +1,16 @@
+---
+# file for roles/tasks/fapolicyd.yml
+- name: Install the fapolicyd package
+  yum:
+    name: "fapolicyd"
+    state: present
+    update_cache: true
+  become: true
+  notify:
+    - enable fapolicyd
+    - restart fapolicyd
+  register: yum_fapolicyd_output
+- debug:
+    var: yum_fapolicyd_output.msg
+#----------------------------------
+...
