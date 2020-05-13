@@ -4,4 +4,7 @@
   register: provided_crypto_policies
 
 - name: print provided crypto-policies
-  debug: var=provided_crypto_policies
+  debug:
+    msg:
+      - "The provided crypto-policies is = "
+      - "{{ provided_crypto_policies.stdout }}"
