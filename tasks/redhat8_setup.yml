@@ -1,0 +1,46 @@
+---
+  # File redhat8_setup.yml for the task that config ONLY CentOs "8" servers
+    
+#-------------------------------------------
+- name: obtain the OS version
+  shell: cat /etc/centos-release
+  register: result_os_version
+- name: rdisplay the O/S version
+  debug: msg= "{{ result_os_version }}"
+#-------------------------------------------
+
+#-------------------------------------------
+- debug: msg="++++++++++++++++++++++++ TASK - install / configure fapolicyd | CONFIGURING APPLICATION WHITELISTS ="++++++++++++++++++++++++
+- name: TASK - install / configure fapolicyd | CONFIGURING APPLICATION WHITELISTS
+  import_tasks: redhat8_fapolicyd.yml
+  check_mode: "{{ var_check_mode }}"
+  tags:
+    - config_fapolicyd
+    - RedHat8
+    - global_redhat_security_features
+
+- name: get service facts
+  service_facts:
+- name: "@@@ Verify the service fapolicyd status @@@"
+  debug:
+    var: ansible_facts.services["fapolicyd.service"]
+#-------------------------------------------
+- debug: msg="++++++++++++++++++++++++ TASK - install / configure crypto-policies | SYSTEM-WIDE CRYPTOGRAPHIC POLICIES ="++++++++++++++++++++++++
+- name: TASK - install / configure crypto-policies | SYSTEM-WIDE CRYPTOGRAPHIC POLICIES
+  import_tasks: redhat8_crypto-policies.yml
+  check_mode: "{{ var_check_mode }}"
+  tags:
+    - config_crypto-policies
+    - RedHat8
+    - global_redhat_security_features
+#-------------------------------------------
+- debug: msg="++++++++++++++++++++++++ TASK - install / configure session-recording | COCKPIT SESSION RECORDING ="++++++++++++++++++++++++
+- name: TASK - install / configure session-recording | COCKPIT SESSION RECORDING
+  import_tasks: redhat8_session-recording.yml
+  check_mode: "{{ var_check_mode }}"
+  tags:
+    - config_session-recording
+    - RedHat8
+    - global_redhat_security_features
+#-------------------------------------------
+...

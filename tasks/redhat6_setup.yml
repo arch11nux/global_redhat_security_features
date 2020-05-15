@@ -1,0 +1,11 @@
+---
+# File redhat6_setup.yml for the task that config ONLY CentOs "6" servers
+
+#-------------------------------------------
+- name: obtain the OS version
+  shell: cat /etc/centos-release
+  register: result_os_version
+- name: rdisplay the O/S version
+  debug: msg= "{{ result_os_version }}"
+#-------------------------------------------
+...

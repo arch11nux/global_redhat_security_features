@@ -1,4 +1,6 @@
 ---
+# File redhatupdate.yml for the task that update CentOs servers
+
 - name: obtain OS version
   shell: cat /etc/centos-release
   register: result_os_version_before_update
@@ -31,3 +33,4 @@
   register: result_os_version_after_update
 - name: register variable for report / "O/S version after the upgrade TASK"
   debug: var=result_os_version_after_update.stdout
+...
