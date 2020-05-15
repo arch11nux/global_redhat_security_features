@@ -1,0 +1,21 @@
+---
+  # File report.yml for the task that generate a playbook report
+
+#-------------------------------------------
+- debug: msg="++++++++++++++++++++++++ TASK - Generate report ++++++++++++++++++++++++"
+  - name: Generate report 
+    template: 
+      src: global_redhat_security_features_report.j2 
+      dest: global_redhat_security_features_report.out
+      owner: ransible
+      group: ransible
+      mode: 0640
+#-------------------------------------------
+- debug: msg="++++++++++++++++++++++++ TASK - Download report ++++++++++++++++++++++++"
+  - name: download report
+    fetch:
+      src: global_redhat_security_features_report.out
+      dest: ../global_redhat_security_features_report/{{ inventory_hostname }}.out
+      flat: yes
+#-------------------------------------------
+...

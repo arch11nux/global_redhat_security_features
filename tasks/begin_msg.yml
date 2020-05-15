@@ -1,0 +1,13 @@
+---
+  # File begin_msg.yml that display a message before task execution
+
+# display the STATUS of var_check_mode
+- debug:
+    msg: 
+    - "### STATUS ### --- var_check_mode --- ### STATUS ###"
+    - "STATUS = {{ var_check_mode }}"
+    - "------------------------------------------"
+    - "if TRUE = CHECK ONLY !"
+    - "D A N G E R -> if FALSE = APPLY CONFIGURATION -> D A N G E R"
+    - "change the value into the file: roles/global_redhat_security_features/defaults/main.yml"
+    - "##########################################"

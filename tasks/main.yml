@@ -1,41 +1,30 @@
 ---
 # tasks file for roles/global_redhat_security_features
-
-# display the STATUS of var_check_mode
-- debug:
-    msg: 
-    - "### STATUS ### --- var_check_mode --- ### STATUS ###"
-    - "STATUS = {{ var_check_mode }}"
-    - "------------------------------------------"
-    - "if TRUE = CHECK ONLY !"
-    - "D A N G E R -> if FALSE = APPLY CONFIGURATION -> D A N G E R"
-    - "change the value into the file: roles/global_redhat_security_features/defaults/main.yml"
-    - "##########################################"
 #-------------------------------------------
+- debug: msg="++++++++++++++++++++++++ TASK - The BEGIN of role global_redhat_security_features message ++++++++++++++++++++++++"
+- include: begin_msg.yml
+  when: ansible_distribution == "RedHat"
+#-------------------------------------------
+- debug: msg="++++++++++++++++++++++++ TASK - update OS | RedHat ALL versions UPDATE ++++++++++++++++++++++++"
 - include: redhat_update.yml
   when: ansible_distribution == "RedHat"
 #-------------------------------------------
+- debug: msg="++++++++++++++++++++++++ TASK - REDHAT 6 ++++++++++++++++++++++++"
 - include: redhat6_setup.yml
   when: ansible_distribution == "RedHat" and ansible_distribution_major_version == '6'
 #-------------------------------------------
+- debug: msg="++++++++++++++++++++++++ TASK - REDHAT 7 ++++++++++++++++++++++++"
 - include: redhat7_setup.yml
   when: ansible_distribution == "RedHat" and ansible_distribution_major_version == '7'
 #-------------------------------------------
+- debug: msg="++++++++++++++++++++++++ TASK - REDHAT 8 ++++++++++++++++++++++++"
 - include: redhat8_setup.yml
   when: ansible_distribution == "RedHat" and ansible_distribution_major_version == '8'
 #-------------------------------------------
-- name: Generate report 
-  template: 
-    src: global_redhat_security_features_report.j2 
-    dest: global_redhat_security_features_report.out
-    owner: ransible
-    group: ransible
-    mode: 0640
+- debug: msg="++++++++++++++++++++++++ TASK - Generate report ++++++++++++++++++++++++"
+- include: report.yml
+  when: ansible_distribution == "RedHat"
 #-------------------------------------------
-- name: download report
-  fetch:
-    src: global_redhat_security_features_report.out
-    dest: ../global_redhat_security_features_report/{{ inventory_hostname }}.out
-    flat: yes
-#-------------------------------------------
+- debug: msg="++++++++++++++++++++++++ TASK - The END of role global_redhat_security_features message ++++++++++++++++++++++++"
+- include: end_msg.yml
 ...

@@ -1,0 +1,9 @@
+---
+  # File end_msg.yml that display a message to the end of the role
+
+# display the END message
+- debug:
+    msg: 
+    - "##########################################"
+    - "This is the END of the role"
+    - "##########################################"
