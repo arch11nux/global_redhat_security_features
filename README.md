@@ -36,6 +36,7 @@ roles/global_redhat_security_features
   defaults/main.yml
   templates/global_redhat_security_features_report.j2
   tasks/main.yml
+    task/begin_msg.yml
     tasks/redhat_update.yml
     tasks/redhat6_setup.yml
     tasks/redhat7_setup.yml
@@ -43,6 +44,7 @@ roles/global_redhat_security_features
       tasks/redhat8_fapolicyd.yml
       tasks/redhat8_crypto-policies.yml
       tasks/redhat8_session-recording.yml
+    task/end_msg.yml
 
 TAGS:
 =====
