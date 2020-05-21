@@ -1,0 +1,28 @@
+---
+# file for roles/tasks/redhat8_systemd_config.yml
+- name: "Check if httpd is installed"
+  package_facts:
+    manager: "auto"
+
+- name: "httpd test result"
+  debug:
+    msg: "httpd found"
+  when: "'httpd' in ansible_facts.packages"
+
+- service_facts:
+- name: Dispay STATUS of service httpd
+  debug:
+    msg: "{{ services['httpd.service'] }}"
+  when: "'httpd' in ansible_facts.packages"
+
+- name: Run SystemD security analyser
+  shell: "systemd-analyze security httpd"
+  when: "'httpd' in ansible_facts.packages"
+  register: httpd_systemd_analyze_security
+
+- name: "Display Overall exposure level for httpd.service"
+  debug:
+    msg: "{{ httpd_systemd_analyze_security.stdout_lines | last }}"
+  when: "'httpd' in ansible_facts.packages"
+#----------------------------------
+...

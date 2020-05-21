@@ -16,7 +16,7 @@
   debug:
     var: ansible_facts.services["fapolicyd.service"]
 #-------------------------------------------
-- debug: msg="++++++++++++++++++++++++ TASK - install / configure crypto-policies | SYSTEM-WIDE CRYPTOGRAPHIC POLICIES ="++++++++++++++++++++++++
+- debug: msg="++++++++++++++++++++++++ TASK - install / configure crypto-policies | SYSTEM-WIDE CRYPTOGRAPHIC POLICIES "++++++++++++++++++++++++
 - name: TASK - install / configure crypto-policies | SYSTEM-WIDE CRYPTOGRAPHIC POLICIES
   import_tasks: redhat8_crypto-policies.yml
   tags:
@@ -24,7 +24,7 @@
     - RedHat8
     - global_redhat_security_features
 #-------------------------------------------
-- debug: msg="++++++++++++++++++++++++ TASK - install / configure session-recording | COCKPIT SESSION RECORDING ="++++++++++++++++++++++++
+- debug: msg="++++++++++++++++++++++++ TASK - install / configure session-recording | COCKPIT SESSION RECORDING "++++++++++++++++++++++++
 - name: TASK - install / configure session-recording | COCKPIT SESSION RECORDING
   import_tasks: redhat8_session-recording.yml
   tags:
@@ -32,4 +32,11 @@
     - RedHat8
     - global_redhat_security_features
 #-------------------------------------------
+- debug: msg="++++++++++++++++++++++++ TASK - verify / configure systemd unit"++++++++++++++++++++++++
+- name: TASK - configure systemd unit
+  import_tasks: redhat8_systemd_config.yml
+  tags:
+    - config_redhat8_systemd
+    - RedHat8
+    - global_redhat_security_features
 ...

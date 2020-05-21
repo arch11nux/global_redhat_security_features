@@ -1,5 +1,8 @@
 ---
 # defaults file for roles/report_global_redhat_security_features
 
-# vars : change TRUE /FALSE
-var_check_mode: false
+# vars
+# var_check_mode: True
+
+# vars for systemd-unit
+global_redhat_security_features_systemd_httpd: True
